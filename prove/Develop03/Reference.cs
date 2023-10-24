@@ -52,8 +52,4 @@ public class Reference
         Console.Write(_myRef);
     }
 
-    
-    
-
-    
 }

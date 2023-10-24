@@ -26,15 +26,15 @@ public class Scripture
         }
     }
 
-    //hides words randomly by setting the hidden flat to true
+    //hides words randomly by setting the hidden flag to true
     public void HideWords()
     {
         Random random = new Random();
         foreach (Word word in _words)
         {
-            if (word._isHidden == false)
+            if (word.GetBool() == false)
             {
-                word._isHidden = random.Next(4) == 0;
+                word.SetBool(random.Next(4) == 0);
             }
             
         }
@@ -49,7 +49,7 @@ public class Scripture
         
         foreach (Word word in _words)
         {
-            if (word._isHidden == true)
+            if (word.GetBool() == true)
             {
                 _count ++;
             }
@@ -73,13 +73,13 @@ public class Scripture
         
         foreach (Word word in _words)
         {
-            if (word._isHidden)
+            if (word.GetBool())
             {
                 Console.Write($" ______");
             }
             else
             {
-                Console.Write($" {word._text}");
+                Console.Write($" {word.GetWord()}");
             }
         }
     }
