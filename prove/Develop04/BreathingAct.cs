@@ -10,9 +10,10 @@ public class BreathingAct : Activities
     
     public void RunBreathe()
     {
-        base.GetUserDuration();
-        base.GetReady();
-        while(base.Timer())
+        GetUserDuration();
+        GetReady();
+       
+        while(Timer())
         {
             Console.Write($"\nBreathe in...");
             base.CountDown(4);

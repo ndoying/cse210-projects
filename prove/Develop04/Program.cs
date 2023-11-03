@@ -24,9 +24,19 @@ class Program
             switch (_userInput)
             {
                 case 1:
-                    _theActivity.StartBreathingActivity();
+                    BreathingAct _theBreathe = new BreathingAct();
+                    _theBreathe.GetName();
+                    _theBreathe.GetDescription();
+                    _theBreathe.DisplayStartMessage();
+                    _theBreathe.RunBreathe();
                     break;
                 case 2:
+                    ReflectionAct _reflection = new ReflectionAct();
+                    _reflection.GetName();
+                    _reflection.GetDescription();
+                    _reflection.DisplayStartMessage();
+                    _reflection.RunReflect();
+                    
                     break;
                 case 3:
                     break;
