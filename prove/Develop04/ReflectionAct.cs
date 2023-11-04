@@ -50,7 +50,7 @@ public class ReflectionAct : Activities
         while(Timer())
         {
             Console.Write($"\n{_deeperQuestions[GetRandom(_deeperQuestions.Count)]} ");
-            PauseSpinner();
+            PauseSpinner(6);
         }
         DisplayWellDone();
     }

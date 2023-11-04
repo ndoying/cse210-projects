@@ -17,9 +17,9 @@ public class BreathingAct : Activities
         while(Timer())
         {
             Console.Write($"\nBreathe in...");
-            base.CountDown(4);
+            base.CountDown(3);
             Console.Write($"\nNow breathe out...");
-            base.CountDown(6);
+            base.CountDown(5);
             Console.WriteLine();
         }
         DisplayWellDone();
