@@ -7,6 +7,7 @@ class Program
         Console.Clear();
         bool _continueRunning = true;
 
+        //Initiate the Activities Class
         Activities _theActivity = new Activities("Default Name", "Default Description");
 
         while (_continueRunning)
@@ -20,7 +21,7 @@ class Program
 
             int _userInput = int.Parse(Console.ReadLine());
 
-            
+            //Switch statement using the menu options to initiate and run the respective mindfulness activities
             switch (_userInput)
             {
                 case 1:
@@ -36,14 +37,17 @@ class Program
                     _reflection.GetDescription();
                     _reflection.DisplayStartMessage();
                     _reflection.RunReflect();
-                    
                     break;
                 case 3:
+                    ListingAct _makeList = new ListingAct();
+                    _makeList.GetName();
+                    _makeList.GetDescription();
+                    _makeList.DisplayStartMessage();
+                    _makeList.RunList();
                     break;
                 case 4:
                     _continueRunning = false;
                     break;
-
             }
         }
     }
