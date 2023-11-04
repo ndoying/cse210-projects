@@ -37,7 +37,7 @@ public class ReflectionAct : Activities
         GetReady();
 
         Console.WriteLine("\nConsider the following prompt:\n");
-        Console.WriteLine($"--- {_reflectionPrompts[GetRandom(_reflectionPrompts.Count)]}---");
+        Console.WriteLine($"--- {_reflectionPrompts[GetRandom(_reflectionPrompts.Count)]} ---");
         Console.WriteLine("\nWhen you have something in mind, press enter to continue.");
         string _userInput = Console.ReadLine();
         if (_userInput == "")

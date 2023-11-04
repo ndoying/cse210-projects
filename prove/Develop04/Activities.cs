@@ -104,9 +104,9 @@ public class Activities
    public void DisplayWellDone()
    {
         Console.WriteLine("\n\nWell done!!");
-        PauseSpinner(3);
-        Console.WriteLine($"\nYou have completed another {_activityDuration} seconds of the {_activityName} Activity.");
         PauseSpinner(4);
+        Console.WriteLine($"\nYou have completed another {_activityDuration} seconds of the {_activityName} Activity.");
+        PauseSpinner(5);
         Console.Clear();
    }
    //Method to return a random number between zero and the maximum number based on a value provided when the method is called.
