@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        
+        Console.Clear();
         List<Shape> shapes = new List<Shape>();
 
         shapes.Add(new Square("Red", 5.0));
