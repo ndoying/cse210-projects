@@ -1,6 +1,7 @@
 using System;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Serialization;
 
 public class SimpleGoal : Goals
 {
@@ -27,9 +28,13 @@ public class SimpleGoal : Goals
 
         AddGoal(simpleGoal);
 
-        
-        // CreateRepresentation(theObject, theName, theDesc, thePoints);
     }
-    
-    
+
+    public override void RecordEvent()
+    {
+        SetFlag(true);
+        Console.WriteLine($"Congratulations! You have earned {GetPoints()} points!");
+        RecordPoints(GetPoints());
+    }
+
 }

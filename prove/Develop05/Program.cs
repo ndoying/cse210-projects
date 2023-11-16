@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 class Program
@@ -10,10 +11,12 @@ class Program
 
         //Initiate the Goals Class
         // Goals _goal = new Goals("Default Name", "Default Description");
-        
+        Goals goalsInstance = new Goals("Default Type", "Default Name", "Default Desc", 0, false);
 
         while (_continueRunning)
         {
+            Console.WriteLine($"\nYou have {Goals.GetTotal()} points");
+
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Create a new goal");
             Console.WriteLine("2. List goals");
@@ -29,7 +32,7 @@ class Program
             //Switch statement using the menu options to initiate and run the respective mindfulness activities
             switch (_userInput)
             {
-                case 1:
+                case 1: //Create a Goal
                     Console.WriteLine("\nThe goal types are::");
                     Console.WriteLine("1. A simple goal");
                     Console.WriteLine("2. An eternal goal");
@@ -53,24 +56,23 @@ class Program
                             break;
                     }
                     break;
-                case 2:
+                case 2: //List Goals
                     Goals.DisplayGoals();
                     break;
-                case 3:
-                    Console.WriteLine("Please give the text file a name: ");
+                case 3: //Save Goals to File
+                    Console.Write("Please give the text file a name: ");
                     string _userInput3 = (Console.ReadLine());
                     Goals.SaveFile(_userInput3);
                     break;
-                case 4:
-                    Console.WriteLine("What is the text file name: ");
+                case 4: //Load Goals from File
+                    Console.Write("What is the text file name: ");
                     string _userInput4 = (Console.ReadLine());
-                    Goals goalsInstance = new Goals("Default Type", "Default Name", "Default Desc", 0, false);
-                    List<Goals> loadedGoals = goalsInstance.ReadFile(_userInput4);
+                    List<Goals> goalsList = Goals.ReadFile(_userInput4);
                     break;
-                case 5:
-                    Goals.RecordEvent();
+                case 5: //Record and Event
+                    goalsInstance.RecordEvent();
                     break;
-                case 6:
+                case 6: //Quit
                     _continueRunning = false;
                     break;
             }

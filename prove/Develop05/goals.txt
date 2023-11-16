@@ -1,2 +1,3 @@
-SimpleGoal,Big,large,100, False
-SimpleGoal,Small,tiny,10, False
+110
+SimpleGoal,Big,large,100, True
+SimpleGoal,Small,tiny,10, True
