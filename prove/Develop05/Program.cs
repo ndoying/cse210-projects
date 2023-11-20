@@ -6,11 +6,19 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Clear();
+        try
+        {
+            Console.Clear();
+        }
+        catch (IOException)
+        {
+            // Handle the exception, for example, by outputting a message or simply ignoring it.
+        }    
+    // Console.Clear();
         bool _continueRunning = true;
 
         //Initiate the Goals Class
-        // Goals _goal = new Goals("Default Name", "Default Description");
+        
         Goals goalsInstance = new Goals("Default Type", "Default Name", "Default Desc", 0, false);
 
         while (_continueRunning)
@@ -25,7 +33,6 @@ class Program
             Console.WriteLine("5. Record event");
             Console.WriteLine("6. Quit");
             Console.Write("Select a choice from the menu >> ");
-
 
             int _userInput = int.Parse(Console.ReadLine());
 
@@ -45,15 +52,17 @@ class Program
                     {
                         case 1:
                             
-                            SimpleGoal _simple = new SimpleGoal("Default Type", "Default Name", "Default Desc", 0, false);
+                            SimpleGoal _simple = new SimpleGoal("SimpleGoal", "Default Name", "Default Desc", 0, false);
                             _simple.RunSimpleGoal();
                             break;
                         case 2:
-                            Console.WriteLine("You chose an enternal goal");
+                            EternalGoal _eternal = new EternalGoal("EternalGoal", "Default Name", "Default Desc", 0, false);
+                            _eternal.RunEternalGoal();
                             break;
                         case 3:
-                            Console.WriteLine("You chose a checklist goal");
-                            break;
+                            CheckListGoal _checkList = new CheckListGoal("CheckListGoal", "Default Name", "Default Desc", 0, false, 0, 0, 0);
+                            _checkList.RunCheckListGoal();
+                        break;
                     }
                     break;
                 case 2: //List Goals
@@ -69,8 +78,34 @@ class Program
                     string _userInput4 = (Console.ReadLine());
                     List<Goals> goalsList = Goals.ReadFile(_userInput4);
                     break;
-                case 5: //Record and Event
-                    goalsInstance.RecordEvent();
+                case 5: //Record an Event
+                    // goalsInstance.RecordEvent();
+                    Console.WriteLine("The goals are:");
+                    Goals.DisplayGoals();
+                    Console.Write("Which goal did you accomplish? >> ");
+                    int accomplish = int.Parse(Console.ReadLine());
+
+
+                    Goals selectedGoal = Goals.GetGoalAt(accomplish-1);
+
+                    switch (selectedGoal)
+                    {
+                        case SimpleGoal simpleGoal:
+                            simpleGoal.RecordEvent();
+
+                            break;
+                        case EternalGoal eternalGoal:
+                            eternalGoal.RecordEvent();
+    
+                            break;
+                        case CheckListGoal checkListGoal:
+                            checkListGoal.RecordEvent();
+                
+                            break;
+                        default:
+                
+                            break;
+                    }
                     break;
                 case 6: //Quit
                     _continueRunning = false;

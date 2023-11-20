@@ -3,19 +3,19 @@ using System.Net.NetworkInformation;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
-public class SimpleGoal : Goals
+public class EternalGoal : Goals
 {
-    protected string _defaultType = "SimpleGoal";
+    protected string _defaultType = "EternalGoal";
     public override string GetType()
     {
         return _defaultType;
     }
-    public SimpleGoal(string type, string name, string desc, int points, bool flag) : base(type, name, desc, points, flag)
+    public EternalGoal(string type, string name, string desc, int points, bool flag) : base(type, name, desc, points, flag)
     {
         
     }
     
-    public void RunSimpleGoal()
+    public void RunEternalGoal()
     {
         CreateGoal();
         string theName = GetName();
@@ -24,18 +24,18 @@ public class SimpleGoal : Goals
         string theType = GetType();
         bool theFlag = GetFlag();
 
-        SimpleGoal simpleGoal = new SimpleGoal(theType, theName, theDesc, thePoints, theFlag);
+        EternalGoal eternalGoal = new EternalGoal(theType, theName, theDesc, thePoints, theFlag);
 
-        AddGoal(simpleGoal);
+        AddGoal(eternalGoal);
 
     }
 
-    public static SimpleGoal FromString(string str)
+    public static EternalGoal FromString(string str)
     {
-    var parts = str.Split(",");
-    return new SimpleGoal(parts[0], parts[1], parts[2], int.Parse(parts[3]), bool.Parse(parts[4]));
+        var parts = str.Split(",");
+        return new EternalGoal(parts[0], parts[1], parts[2], int.Parse(parts[3]), bool.Parse(parts[4]));
     }
-    // public static SimpleGoal FromString(string str)
+    // public static EternalGoal FromString(string str)
     // {
     //     var parts = str.Split(",");
     
@@ -45,16 +45,15 @@ public class SimpleGoal : Goals
     //     int _goalPoints = int.Parse(parts[3]);
     //     bool _completedFlag = bool.Parse(parts[4]);
 
-    //     return new SimpleGoal(_goalType, _goalName, _goalDesc, _goalPoints, _completedFlag);
+    //     return new EternalGoal(_goalType, _goalName, _goalDesc, _goalPoints, _completedFlag);
     
     // }
+
     public override void RecordEvent()
     {
-        SetFlag(true);
+        SetFlag(false);
         Console.WriteLine($"Congratulations! You have earned {GetPoints()} points!");
         RecordPoints(GetPoints());
     }
 
 }
-
-

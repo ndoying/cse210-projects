@@ -9,13 +9,14 @@ public class Goals
  private string _goalType;
  private bool _completedFlag;
 
- private static int _totalPoints;
+ private static int _totalPoints = 0;
+
 
 //Declaring and initializing the goal list
  private static List<Goals> goalList = new List<Goals>();
 
  //Method to create a goal with the inputs from the user
- public void CreateGoal()
+ public virtual void CreateGoal()
  {
     _goalType = "default value";
     Console.WriteLine("\nWhat is the name of your goal?");
@@ -34,7 +35,7 @@ public class Goals
     this._goalDesc = desc;
     this._goalPoints = points;
     this._completedFlag = flag;
-    _totalPoints = 0;
+   
  }
  //Getters and setters for the variables 
  public string GetName()
@@ -61,7 +62,6 @@ public class Goals
  {
     _goalPoints = points;
  }
-
  public new virtual string GetType()
  {
     return _goalType;
@@ -84,26 +84,38 @@ public class Goals
  {
     _totalPoints = points3;
  }
+
 //Method to create a list of the goal instances
 public static void AddGoal(Goals goal)
 {
     goalList.Add(goal);
 }
-// //  public void CreateRepresentation(string theObject, string theName, string theDesc, int thePoints)
-// //  {
-// //     string _representation = $"{theObject}:{theName},{theDesc},{thePoints}";
-// //     goalList.Add(new Goals(theName, theDesc, thePoints));
-// //     Console.WriteLine($"{_representation}");
-//  }
+
+public static Goals GetGoalAt(int index)
+{
+    return goalList[index];
+}
+
 //Method to display the goals from the list
  public static void DisplayGoals()
  {
     for (int i = 0; i < goalList.Count; i++)   
     {
          Goals goal = goalList[i];
-         Console.WriteLine($"[{i + 1}]. [ ] {goal.GetName()} ({goal.GetDesc()})");
+         if (goal != null) // Add this condition to check if the goal is not null
+         {
+            if (goal._completedFlag is true)
+            {
+               Console.WriteLine($"[{i + 1}]. [X] {goal.GetName()} ({goal.GetDesc()})");
+            }
+            else
+            {
+               Console.WriteLine($"[{i + 1}]. [ ] {goal.GetName()} ({goal.GetDesc()})");
+            }
+         }
     }
  }
+
 //Method to save the goals from the list into a text file
  public static void SaveFile(string filename)
  {
@@ -113,7 +125,15 @@ public static void AddGoal(Goals goal)
 
         foreach (Goals goal in goalList)
         {
-            string goalString = $"{goal.GetType()},{goal.GetName()},{goal.GetDesc()},{goal.GetPoints()}, {goal.GetFlag()}";
+            string goalString;
+            if (goal is CheckListGoal checkListGoal)
+            {
+               goalString = $"{goal.GetType()},{goal.GetName()},{goal.GetDesc()},{goal.GetPoints()},{goal.GetFlag()},{checkListGoal.GetFrequency()},{checkListGoal.GetBonus()}";
+            }
+            else
+            {
+               goalString = $"{goal.GetType()},{goal.GetName()},{goal.GetDesc()},{goal.GetPoints()},{goal.GetFlag()}";
+            }
             outputFile.WriteLine(goalString);
         }
     }
@@ -125,11 +145,13 @@ public static List<Goals> ReadFile(string filename)
     //     return null;
     
     // List<Goals> goalList = new List<Goals>();
-    goalList = new List<Goals>();
+    goalList.Clear();
+   //  goalList = new List<Goals>();
+   
 
     using StreamReader reader = new StreamReader(filename);
     _totalPoints = int.Parse(reader.ReadLine());
-    Goals.SetTotal(_totalPoints);
+    Goals.SetTotal(_totalPoints); // Set the total points after reading from the file
     string line;
     while ((line = reader.ReadLine()) != null)
     {
@@ -141,10 +163,10 @@ public static List<Goals> ReadFile(string filename)
                 item = SimpleGoal.FromString(line);
                 break;
             case "EternalGoal":
-                item = null;
+                item = EternalGoal.FromString(line);
                 break;
             case "CheckListGoal":
-                item = null;
+                item = CheckListGoal.FromString(line);
                 break;
             default:
                 item = null;
@@ -156,49 +178,40 @@ public static List<Goals> ReadFile(string filename)
     
 
 }
-public static SimpleGoal FromString(string str)
-{
-    var parts = str.Split(",");
-    
-    string _goalType = parts[0];
-    string _goalName = parts[1];
-    string  _goalDesc = parts[2];
-    int _goalPoints = int.Parse(parts[3]);
-    bool _completedFlag = bool.Parse(parts[4]);
-
-    return new SimpleGoal(_goalType, _goalName, _goalDesc, _goalPoints, _completedFlag);
-    
-}
+// public static SimpleGoal FromString(string str)
+// {
+//    Make virtual??
+// }
 
 //Method to record an event
 public virtual void RecordEvent()
 {
-    Console.WriteLine("The goals are:");
-    DisplayGoals();
-    Console.Write("Which goal did you accomplish? >> ");
-    int accomplish = int.Parse(Console.ReadLine());
+   //  Console.WriteLine("The goals are:");
+   //  DisplayGoals();
+   //  Console.Write("Which goal did you accomplish? >> ");
+   //  int accomplish = int.Parse(Console.ReadLine());
 
-    // Console.WriteLine(accomplish); //Check
-    // Console.WriteLine(goalList[accomplish-1]); //Check
 
-    Goals selectedGoal = goalList[accomplish-1];
+   //  Goals selectedGoal = goalList[accomplish-1];
 
-    switch (selectedGoal)
-        {
-            case SimpleGoal simpleGoal:
-                simpleGoal.RecordEvent();
+   //  switch (selectedGoal)
+   //      {
+   //          case SimpleGoal simpleGoal:
+   //             simpleGoal.RecordEvent();
 
-                break;
-            // case EternalGoal eternalGoal:
+   //             break;
+   //          case EternalGoal eternalGoal:
+   //             eternalGoal.RecordEvent();
     
-            //     break;
-            // case CheckListGoal checkListGoal:
+   //             break;
+   //          case CheckListGoal checkListGoal:
+   //             checkListGoal.RecordEvent();
                 
-            //     break;
-            default:
+   //              break;
+   //          default:
                 
-                break;
-        }
+   //              break;
+   //      }
     
 }
 public static void RecordPoints(int points2)
@@ -207,5 +220,3 @@ public static void RecordPoints(int points2)
     Console.WriteLine($"You now have {_totalPoints} points");
 }
 }
-
-
