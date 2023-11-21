@@ -6,34 +6,40 @@ using System.Xml.Serialization;
 
 public class CheckListGoal : Goals
 {
+    //Field declarations
     protected int _goalFrequency;
     private int _timesAccomplished;
     private int _bonusPoints;
-    public int GetFrequency()
-    {
-        return _goalFrequency;
-    }
-
-    public int GetBonus()
-    {
-        return _bonusPoints;
-    }
+    //Set goal type for class object
     protected string _defaultType = "CheckListGoal";
     public override string GetType()
     {
         return _defaultType;
     }
+
+    //Getters and Setters
+    public int GetFrequency()
+    {
+        return _goalFrequency;
+    }
+    public int GetBonus()
+    {
+        return _bonusPoints;
+    }
     public int GetTimes()
     {
         return _timesAccomplished;
     }
+
+    //Constructor to assign values to the class' variables
     public CheckListGoal(string type, string name, string desc, int points, bool flag, int frequency, int times, int bonus) : base(type, name, desc, points, flag)
     {
         _goalFrequency = frequency;
         _timesAccomplished = times;
         _bonusPoints = bonus;
     }
-    
+
+    //Override method to add varibles to the Create Goal method
     public override void CreateGoal()
     {
         base.CreateGoal();
@@ -42,6 +48,8 @@ public class CheckListGoal : Goals
         Console.WriteLine("How many bonus points for this goal?: ");
         _bonusPoints = int.Parse(Console.ReadLine());   
     }
+
+    //Method to instantiate an object of this class and add it to the goal list
     public void RunCheckListGoal()
     {
         CreateGoal();
@@ -57,9 +65,8 @@ public class CheckListGoal : Goals
         CheckListGoal checkGoal = new CheckListGoal(theType, theName, theDesc, thePoints, theFlag, theFrequency, theTimes, theBonus);
 
         AddGoal(checkGoal);
-
     }
-
+    //Mehod to instantiate an object from a text file string
     public static CheckListGoal FromString(string str)
     {
         var parts = str.Split(",");
@@ -77,6 +84,7 @@ public class CheckListGoal : Goals
     
     }
 
+    //Override method to record an event and record points earned
     public override void RecordEvent()
     {
         SetFlag(false);
@@ -85,9 +93,10 @@ public class CheckListGoal : Goals
         _timesAccomplished = _timesAccomplished + 1;
         if (_timesAccomplished == _goalFrequency)
         {
-            Console.WriteLine($"Congratulations! You have earned {GetBonus()} points!");
+            Console.WriteLine($"Congratulations! You have earned {GetBonus()} BONUS points!");
+            SetFlag(true);
             RecordPoints(GetBonus());
+
         }
     }
-
 }

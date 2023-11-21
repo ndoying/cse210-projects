@@ -12,15 +12,16 @@ class Program
         }
         catch (IOException)
         {
-            // Handle the exception, for example, by outputting a message or simply ignoring it.
+            // Handle the exception.
         }    
-    // Console.Clear();
+    
         bool _continueRunning = true;
 
         //Initiate the Goals Class
         
         Goals goalsInstance = new Goals("Default Type", "Default Name", "Default Desc", 0, false);
-
+        
+        //Main Menu
         while (_continueRunning)
         {
             Console.WriteLine($"\nYou have {Goals.GetTotal()} points");
@@ -36,10 +37,10 @@ class Program
 
             int _userInput = int.Parse(Console.ReadLine());
 
-            //Switch statement using the menu options to initiate and run the respective mindfulness activities
+            //Switch statement to initiate and run the respective menu options
             switch (_userInput)
             {
-                case 1: //Create a Goal
+                case 1: //Create a new goal
                     Console.WriteLine("\nThe goal types are::");
                     Console.WriteLine("1. A simple goal");
                     Console.WriteLine("2. An eternal goal");
@@ -47,11 +48,10 @@ class Program
                     Console.Write("What type of goal would you like to set? >> ");
 
                     int _userInput2 = int.Parse(Console.ReadLine());
-
+                    //Switch statement to specify the type of goal and instantiate that goal type's class
                     switch (_userInput2)
                     {
                         case 1:
-                            
                             SimpleGoal _simple = new SimpleGoal("SimpleGoal", "Default Name", "Default Desc", 0, false);
                             _simple.RunSimpleGoal();
                             break;
@@ -73,18 +73,16 @@ class Program
                     string _userInput3 = (Console.ReadLine());
                     Goals.SaveFile(_userInput3);
                     break;
-                case 4: //Load Goals from File
-                    Console.Write("What is the text file name: ");
+                case 4: //Load Goals from a File
+                    Console.Write("What is the text file name? ");
                     string _userInput4 = (Console.ReadLine());
                     List<Goals> goalsList = Goals.ReadFile(_userInput4);
                     break;
                 case 5: //Record an Event
-                    // goalsInstance.RecordEvent();
                     Console.WriteLine("The goals are:");
                     Goals.DisplayGoals();
                     Console.Write("Which goal did you accomplish? >> ");
                     int accomplish = int.Parse(Console.ReadLine());
-
 
                     Goals selectedGoal = Goals.GetGoalAt(accomplish-1);
 
@@ -103,7 +101,7 @@ class Program
                 
                             break;
                         default:
-                
+
                             break;
                     }
                     break;
@@ -112,6 +110,5 @@ class Program
                     break;
             }
         }
-    
     }
 }

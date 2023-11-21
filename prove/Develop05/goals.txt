@@ -1,4 +1,4 @@
-0
-SimpleGoal,Big,large,100,False
-EternalGoal,Eternal,forever,50,False
-CheckListGoal,CheckList,Checking a list,25,False,3,100
+2300
+SimpleGoal,Large,Big,200,True
+EternalGoal,Eternal,on and on,300,False
+CheckListGoal,CheckList,checkmate,400,True,2,2,1000
