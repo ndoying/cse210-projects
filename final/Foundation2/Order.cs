@@ -1,24 +1,29 @@
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 class Order
 {
+    //Define the Order class properties and create a product list
     private int _orderID;
     private List<Products> _products = new List<Products>();
     private Customer _customer;
     private double _shippingCost;
 
-    public void SetOrderProperties (int id, Customer customer)
+    //Set the properties
+    public void SetOrderProperties (Customer customer)
     {
-        _orderID = id;
         _customer = customer;
         _shippingCost = 0;
     }
 
+    //Method to add products to the product list
     public void AddProduct(Products product)
     {
         _products.Add(product);
     }
+
+    //Method to calculate the total for the order including shipping cost
     public double GetTotal()
     {
         double total = 0;
@@ -28,7 +33,7 @@ class Order
             total += product.CalculatePrice();
         }
 
-        bool flag = _customer.GetAddress().GetIsUSA();
+        bool flag = _customer.GetInUSA();
         if ( flag == true)
         {
             _shippingCost = 5;
@@ -40,22 +45,24 @@ class Order
         return total + _shippingCost;
     }
     
-    public void PrintShippingLabel()
+    //Method to create a shipping label string
+    public string GetShippingLabel()
     {
-        Console.WriteLine($"Customer Name: \n{_customer.GetName()}");
-        Console.WriteLine($"Shipping Address: \n{_customer.GetAddress().GetFormattedAddress()}");
-
+        string _shippingLabel = $"Customer Name: \n{_customer.GetName()}\nShipping Address:\n{_customer.GetAddress().GetFormattedAddress()}";
+        return _shippingLabel;
     }
-    public void PrintPackingLabel()
+
+    //Method to create a packing label string
+    public string GetPackingLabel()
     {
-        Console.WriteLine($"Order ID: {_orderID}");
+        StringBuilder packingLabel = new StringBuilder();
+        packingLabel.AppendLine("Products Ordered: ");
+
         foreach (var product in _products)
         {
-            Console.WriteLine($"Product Name/ID: {product.GetProductName()}/{product.GetProductID()}");
-            
+            packingLabel.AppendLine($"Product Name/ID: {product.GetProductName()}/{product.GetProductID()}");
         }
-        Console.WriteLine($"\nThe Order Total is: {GetTotal()}");
-
+        return packingLabel.ToString();
     }
-
+        
 }

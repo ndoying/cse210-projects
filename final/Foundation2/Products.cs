@@ -4,11 +4,13 @@ using System.Diagnostics.Contracts;
 
 class Products
 {
+    //Define the Product class properties
     private int _productID;
     private string _productName;
     private double _productPrice;
     private int _productQuantity;
 
+    //Set the properties
     public void SetProductsProperties(int id, string name, double price, int quantity)
     {
         _productID = id;
@@ -18,6 +20,7 @@ class Products
 
     }
 
+    //Getters
     public string GetProductName()
     {
         return _productName;
@@ -27,6 +30,8 @@ class Products
     {
         return _productID;
     }
+    
+    //Method to calculate the ordered product price
     public double CalculatePrice()
     {
         double orderedValue = _productPrice * _productQuantity;
