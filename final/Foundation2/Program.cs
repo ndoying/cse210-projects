@@ -13,13 +13,13 @@ class Program
         Order order1 = new Order();
         order1.SetOrderProperties(customerInfo1);
         Products product1 = new Products();
-        product1.SetProductsProperties(101, "Black Beans", 1.25, 20);
+        product1.SetProductsProperties(101, "Silver Beans", 110.25, 1);
         order1.AddProduct(product1);
         Products product2 = new Products();
         product2.SetProductsProperties(201, "Red Beans", 2.25, 30);
         order1.AddProduct(product2);
         Products product3 = new Products();
-        product3.SetProductsProperties(301, "Gold Beans", 350.25, 1);
+        product3.SetProductsProperties(301, "Black Beans", 1.25, 20);
         order1.AddProduct(product3);
 
         Console.WriteLine(order1.GetPackingLabel());
@@ -36,7 +36,7 @@ class Program
         Order order2 = new Order();
         order2.SetOrderProperties(customerInfo2);
         Products product4 = new Products();
-        product4.SetProductsProperties(401, "Silver Beans", 150.85, 2);
+        product4.SetProductsProperties(401, "Gold Beans", 350.85, 1);
         order2.AddProduct(product4);
         Products product5 = new Products();
         product5.SetProductsProperties(501, "Boston Baked Beans", 3.75, 15);
@@ -59,7 +59,7 @@ class Program
         Order order3 = new Order();
         order3.SetOrderProperties(customerInfo3);
         Products product7 = new Products();
-        product7.SetProductsProperties(701, "Daimond Beans", 750.85, 3);
+        product7.SetProductsProperties(701, "Daimond Beans", 750.85, 1);
         order3.AddProduct(product7);
         Products product8 = new Products();
         product8.SetProductsProperties(801, "Azuki Beans", 5.75, 10);
