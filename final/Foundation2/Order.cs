@@ -8,24 +8,54 @@ class Order
     private Customer _customer;
     private double _shippingCost;
 
-    public void SetOrderProperties (int id, Customer customer, double shippingCost)
+    public void SetOrderProperties (int id, Customer customer)
     {
         _orderID = id;
         _customer = customer;
-        _shippingCost = shippingCost;
+        _shippingCost = 0;
     }
 
-    public string GetShippingLabel()
+    public void AddProduct(Products product)
     {
-        Address shippingAddress = _customer.Address;
-        string formattedAddress = shippingAddress.GetFormattedAddress();
-        Console.WriteLine(formattedAddress);
-        return formattedAddress;
-        
+        _products.Add(product);
     }
-    // public string GetPackingLabel();
-    // {
+    public double GetTotal()
+    {
+        double total = 0;
 
-    // }
+        foreach (var product in _products)
+        {
+            total += product.CalculatePrice();
+        }
+
+        bool flag = _customer.GetAddress().GetIsUSA();
+        if ( flag == true)
+        {
+            _shippingCost = 5;
+        }
+        else
+        {
+            _shippingCost = 35;
+        }
+        return total + _shippingCost;
+    }
+    
+    public void PrintShippingLabel()
+    {
+        Console.WriteLine($"Customer Name: \n{_customer.GetName()}");
+        Console.WriteLine($"Shipping Address: \n{_customer.GetAddress().GetFormattedAddress()}");
+
+    }
+    public void PrintPackingLabel()
+    {
+        Console.WriteLine($"Order ID: {_orderID}");
+        foreach (var product in _products)
+        {
+            Console.WriteLine($"Product Name/ID: {product.GetProductName()}/{product.GetProductID()}");
+            
+        }
+        Console.WriteLine($"\nThe Order Total is: {GetTotal()}");
+
+    }
 
 }

@@ -9,7 +9,7 @@ class Products
     private double _productPrice;
     private int _productQuantity;
 
-    public Products(int id, string name, double price, int quantity)
+    public void SetProductsProperties(int id, string name, double price, int quantity)
     {
         _productID = id;
         _productName = name;
@@ -18,6 +18,15 @@ class Products
 
     }
 
+    public string GetProductName()
+    {
+        return _productName;
+    }
+
+    public int GetProductID()
+    {
+        return _productID;
+    }
     public double CalculatePrice()
     {
         double orderedValue = _productPrice * _productQuantity;

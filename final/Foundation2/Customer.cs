@@ -5,19 +5,19 @@ class Customer
     private string _name;
     private Address _address;
 
-    public void SetCustomerProperties(string name)
+    public void SetCustomerProperties(string name, Address address)
     {
         _name = name;
+        _address = address;
     }
     
     public string GetName()
     {
         return _name;
     }
-    public Address Address 
+    public Address GetAddress()
     {
-        get {return _address;}
-        set {_address = value;}
+        return _address; 
     }
     
     // public Customer(string name, Address address)
