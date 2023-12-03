@@ -1,16 +1,24 @@
 using System;
 
-// class Outdoor : Events
-// {
-//     private string _weatherForecast;
+public class Outdoor : Events
+{
+    //Define the Outdoor class properties
+    private string _weather;
+    
+    //Getters and setters
+    public string GetWeather()
+    {
+        return _weather;
+    }
+    public void SetWeather(string forecast)
+    {
+        _weather = forecast;
+    }
+    //Override method for specific FullMessage details
+    public override string GetSpecificDetails()
+    {
+        string details = $"The weather forecast for that day is: {GetWeather()}";
+        return details;
+    }
 
-//     public Lectures() : base("Bird Watching in Bermuda", "An entertaining lecture on the benefits of birding in Bermuda!")
-//     {
-
-//     }
-
-//     public void GetFullMessage()
-//     {
-        
-//     }
-// }
+}
