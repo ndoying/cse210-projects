@@ -9,53 +9,21 @@ public class Events
     private string _address;
     private string _eventType;
 
-    //Getters and Setters
-    public string GetTitle()
-    {
-        return _title;
-    }
-    public void SetTitle(string title)
+    public Events(string title, string description, DateTime date, string address, string type)
     {
         _title = title;
+        _description = description;
+        _dateAndTime = date;
+        _address = address;
+        _eventType = type;
     }
-    public string GetDescription()
-    {
-        return _description;
-    }
-    public void SetDescription(string desc)
-    {
-        _description = desc;
-    }
-    public DateTime GetDateTime()
-    {
-        return _dateAndTime;
-    }
-    public void SetDateTime(DateTime dateTime)
-    {
-        _dateAndTime = dateTime;
-    }
-    
-    public string GetEventType()
-    {
-        return _eventType;
-    }
-    public void SetEventType(string theEvent)
-    {
-        _eventType = theEvent;
-    }
-    public string GetAddress()
-    {
-        return _address;
-    }
-    public void SetAddress(string location)
-    {
-        _address = location;
-    }
+
     //Virtual method to facilitate FullMessage method
     public virtual string GetSpecificDetails()
     {
         return "";
     }
+
     //Standard Message String
     public string GetStandardMessage()
     {
@@ -72,6 +40,7 @@ public class Events
         Console.WriteLine(GetStandardMessage());
 
     }
+    
     public void FullMessage()
     {
         Console.WriteLine();
@@ -80,11 +49,12 @@ public class Events
         Console.WriteLine(GetStandardMessage());
         Console.WriteLine(GetSpecificDetails());
     }
+    
     public void ShortMessage()
     {
         Console.WriteLine();
         Console.WriteLine("Short Description Message");
         string shortMessageDate = _dateAndTime.ToString("yyyy-MMM-dd");
-        Console.WriteLine($"{_eventType} Event\n{_title} \n{shortMessageDate}");
+        Console.WriteLine($"{_eventType} Event\n'{_title}' \n{shortMessageDate}");
     }
 }

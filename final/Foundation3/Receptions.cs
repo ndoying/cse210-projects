@@ -4,16 +4,18 @@ public class Receptions : Events
 {
     //Define the Receptions class properties
     private string _email;
+
+    public Receptions(string title, string description, DateTime date, string address, string type, string email) : base(title, description, date, address, type)
+    {
+        _email = email;
+    }
     
     //Getters and Setters
     public string GetEmail()
     {
         return _email;
     }
-    public void SetEmail(string email)
-    {
-        _email = email;
-    }
+    
     //Override method for specific FullMessage details
     public override string GetSpecificDetails()
     {

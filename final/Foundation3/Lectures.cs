@@ -6,22 +6,22 @@ public class Lectures : Events
     private string _speaker;
     private int _capacity;
 
-    //Getters and Setters
+    public Lectures(string title, string description, DateTime date, string address, string type, string speaker, int capacity) : base(title, description, date, address, type)
+    {
+        _speaker = speaker;
+        _capacity = capacity;
+    }
+
+
+    // Getters and Setters
     public string GetSpeaker()
     {
         return _speaker;
     }
-    public void SetSpeaker(string speaker)
-    {
-        _speaker = speaker;
-    }
+    
     public int GetCapacity()
     {
         return _capacity;
-    }
-    public void SetCapacity(int capacity)
-    {
-        _capacity = capacity;
     }
     
     //Override method for specific FullMessage details
