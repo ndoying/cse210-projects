@@ -23,7 +23,7 @@ class Running : Activity
         return 60 / GetPace();
     }
     
-    //Override method to create summary
+    //Override method to create summary.
     public override string GetSummary()
     {
         string _summary = $"{GetDate()} Running ({GetDuration()} min) - Distance: {FormatDouble(_distance)} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
