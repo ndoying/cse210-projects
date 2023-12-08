@@ -30,9 +30,9 @@ class Swimming : Activity
     }
     
     //Override method to create summary
-    public override string GetSummary()
-    {
-        string _summary = $"{GetDate()} Swimming ({GetDuration()} min) - Distance: {FormatDouble(GetDistance())} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
-        return _summary;
-    }
+    // public override string GetSummary()
+    // {
+    //     string _summary = $"{GetDate()} Swimming ({GetDuration()} min) - Distance: {FormatDouble(GetDistance())} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
+    //     return _summary;
+    // }
 }

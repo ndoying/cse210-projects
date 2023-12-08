@@ -1,6 +1,6 @@
 using System;
 
-abstract class Activity
+public class Activity
 {
     //Define the Activity class properties
     private string _date;
@@ -31,7 +31,10 @@ abstract class Activity
     }
     
     //Abstract method to calcuate pace
-    public abstract double GetPace();
+    public virtual double GetPace()
+    {
+        return 0;
+    }
 
     //Virtual method to calculate distance
     public virtual double GetDistance()
@@ -39,13 +42,20 @@ abstract class Activity
         return 0;
     }
     
-    //Virtual method to format the numbers in the summary
-    public virtual string FormatDouble(double value)
+    //Method to format the numbers in the summary
+    public string FormatDouble(double value)
     {
         return value.ToString("F1");
     }
     
-    //Abstract method to create the summary
-    public abstract string GetSummary();
+    // //Abstract method to create the summary
+    // public abstract string GetSummary();
+
+    //Method to display the summary
+    public string GetSummary()
+    {
+        string _summary = $"{GetDate()} {GetType().Name} ({GetDuration()} min): Distance: {FormatDouble(GetDistance())} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
+        return _summary;
+    }
     
 }

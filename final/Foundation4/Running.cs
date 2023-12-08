@@ -11,6 +11,12 @@ class Running : Activity
         _distance = distance;
     }
 
+    //Override method to calculate the distance
+    public override double GetDistance()
+    {
+        return _distance;
+    }
+
     //Override method to calculate the pace
     public override double GetPace()
     {
@@ -23,10 +29,15 @@ class Running : Activity
         return 60 / GetPace();
     }
     
+    // public void GetSummary()
+    // {
+    //     base.GetSummary();
+    // }
+    
     //Override method to create summary.
-    public override string GetSummary()
-    {
-        string _summary = $"{GetDate()} Running ({GetDuration()} min) - Distance: {FormatDouble(_distance)} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
-        return _summary;
-    }
+    // public override string GetSummary()
+    // {
+    //     string _summary = $"{GetDate()} Running ({GetDuration()} min) - Distance: {FormatDouble(_distance)} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
+    //     return _summary;
+    // }
 }
