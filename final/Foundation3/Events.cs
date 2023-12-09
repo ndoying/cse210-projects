@@ -9,6 +9,7 @@ public class Events
     private string _address;
     private string _eventType;
 
+    //Constructor for the Events class properties
     public Events(string title, string description, DateTime date, string address, string type)
     {
         _title = title;
@@ -38,7 +39,6 @@ public class Events
         Console.WriteLine();
         Console.WriteLine("Standard Details Message");
         Console.WriteLine(GetStandardMessage());
-
     }
     
     public void FullMessage()

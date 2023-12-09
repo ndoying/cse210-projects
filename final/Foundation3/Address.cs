@@ -7,8 +7,7 @@ class Address
     private string _city;
     private string _state;
     
-
-    //Set the properties
+    //Constructor to set the properties
     public Address(string street, string city, string state)
     {
         _street = street;

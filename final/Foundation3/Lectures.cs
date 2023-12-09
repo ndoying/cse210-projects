@@ -6,14 +6,14 @@ public class Lectures : Events
     private string _speaker;
     private int _capacity;
 
+    //Constructor to set the Lecture class properties
     public Lectures(string title, string description, DateTime date, string address, string type, string speaker, int capacity) : base(title, description, date, address, type)
     {
         _speaker = speaker;
         _capacity = capacity;
     }
 
-
-    // Getters and Setters
+    // Getters
     public string GetSpeaker()
     {
         return _speaker;
