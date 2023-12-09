@@ -12,32 +12,21 @@ class Running : Activity
     }
 
     //Override method to calculate the distance
-    public override double GetDistance()
+    public override double CalculateDistance()
     {
         return _distance;
     }
 
     //Override method to calculate the pace
-    public override double GetPace()
+    public override double CalculatePace()
     {
         return GetDuration() / _distance;
     }
 
     //Override method to calculate the speed
-    public override double GetSpeed()
+    public override double CalculateSpeed()
     {
-        return 60 / GetPace();
+        return 60 / CalculatePace();
     }
     
-    // public void GetSummary()
-    // {
-    //     base.GetSummary();
-    // }
-    
-    //Override method to create summary.
-    // public override string GetSummary()
-    // {
-    //     string _summary = $"{GetDate()} Running ({GetDuration()} min) - Distance: {FormatDouble(_distance)} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
-    //     return _summary;
-    // }
 }

@@ -12,27 +12,21 @@ class Swimming : Activity
     }
 
     //Override method to calculate the distance
-    public override double GetDistance()
+    public override double CalculateDistance()
     {
         return _lap * 50 / 1000 * 0.62;
     }
     
     //Override method to calculate the pace
-    public override double GetPace()
+    public override double CalculatePace()
     {
-        return GetDuration() / GetDistance();
+        return GetDuration() / CalculateDistance();
     }
 
     //Override method to calculate the speed
-    public override double GetSpeed()
+    public override double CalculateSpeed()
     {
-        return 60 / GetPace();
+        return 60 / CalculatePace();
     }
     
-    //Override method to create summary
-    // public override string GetSummary()
-    // {
-    //     string _summary = $"{GetDate()} Swimming ({GetDuration()} min) - Distance: {FormatDouble(GetDistance())} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
-    //     return _summary;
-    // }
 }

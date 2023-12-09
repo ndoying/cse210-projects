@@ -12,27 +12,21 @@ class Cycling : Activity
     }
 
     //Override method to calculate the speed
-    public override double GetSpeed()
+    public override double CalculateSpeed()
     {
         return _speed;
     }
     
     //Override method to calculate the distance
-    public override double GetDistance()
+    public override double CalculateDistance()
     {
         return _speed * GetDuration() / 60;
     }
     
     //Override method to calculate the pace
-    public override double GetPace()
+    public override double CalculatePace()
     {
-        return GetDuration() / GetDistance();
+        return GetDuration() / CalculateDistance();
     }
     
-    // //Override method to create summary
-    // public override string GetSummary()
-    // {
-    //     string _summary = $"{GetDate()} Cycling ({GetDuration()} min) - Distance: {FormatDouble(GetDistance())} miles, Speed: {FormatDouble(_speed)} mph, Pace: {FormatDouble(GetPace())} min per mile.";
-    //     return _summary;
-    // }
 }

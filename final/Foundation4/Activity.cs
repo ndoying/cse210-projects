@@ -25,19 +25,19 @@ public class Activity
     }
 
     //Virtual method to calculate speed
-    public virtual double GetSpeed()
+    public virtual double CalculateSpeed()
     {
         return 0;
     }
     
-    //Abstract method to calcuate pace
-    public virtual double GetPace()
+    //Virtual method to calcuate pace
+    public virtual double CalculatePace()
     {
         return 0;
     }
 
     //Virtual method to calculate distance
-    public virtual double GetDistance()
+    public virtual double CalculateDistance()
     {
         return 0;
     }
@@ -48,13 +48,10 @@ public class Activity
         return value.ToString("F1");
     }
     
-    // //Abstract method to create the summary
-    // public abstract string GetSummary();
-
     //Method to display the summary
     public string GetSummary()
     {
-        string _summary = $"{GetDate()} {GetType().Name} ({GetDuration()} min): Distance: {FormatDouble(GetDistance())} miles, Speed: {FormatDouble(GetSpeed())} mph, Pace: {FormatDouble(GetPace())} min per mile.";
+        string _summary = $"{GetDate()} {GetType().Name} ({GetDuration()} min): Distance: {FormatDouble(CalculateDistance())} miles, Speed: {FormatDouble(CalculateSpeed())} mph, Pace: {FormatDouble(CalculatePace())} min per mile.";
         return _summary;
     }
     
